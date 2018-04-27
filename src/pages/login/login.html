@@ -1,0 +1,72 @@
+
+<ion-content>
+  <div class ="overlay"></div>
+  <img src = "assets/img_login/Starbucks.png"  class="center" >
+  <ion-segment [(ngModel)] ="login_type" color="sky" padding class="switcher">
+    <ion-segment-button value ="login" default>
+      เข้าสู่ระบบ
+    </ion-segment-button>
+    <ion-segment-button value = "register">
+      ลงทะเบียน
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch] ="login_type">
+    <div *ngSwitchCase = "'login'">
+      <form [formGroup] ="login_form"(ngSubmit)="login(user)" padding>
+        <ion-item  class ="input-item">
+          <ion-label>
+            <ion-icon name ="mail"></ion-icon> Email
+          </ion-label>
+          <ion-input formControlName="email" type="email" [(ngModel)]="user.email"></ion-input>
+        </ion-item>
+        <ion-item class ="input-item">
+            <ion-label>
+              <ion-icon name ="lock"></ion-icon> Password
+            </ion-label>
+            <ion-input formControlName="password" type="password" [(ngModel)]="user.password"></ion-input>
+          </ion-item>
+          <button class="login-button" ion-button icon-start type = "submit" [disabled]="!login_form.valid">
+              <ion-icon name = "log-in"></ion-icon>
+              <span>เข้าสู่ระบบ</span>
+              </button>
+              <p class = "forgot-password">
+              ลืมรหัสผ่าน
+            </p>
+      </form>
+    </div>
+
+    <div *ngSwitchCase = "'register'">
+        <form [formGroup] ="register_form" padding>
+          <ion-item class ="input-item">
+            <ion-label>
+              <ion-icon name ="mail"></ion-icon> Email
+            </ion-label>
+            <ion-input formControlName="email" type="email" [(ngModel)]="user.email"></ion-input>
+          </ion-item>
+  
+          <ion-item class ="input-item">
+              <ion-label class = "">
+                <ion-icon name ="lock"></ion-icon> Password
+              </ion-label>
+              <ion-input formControlName="password" type="password" [(ngModel)]="user.password"></ion-input>
+            </ion-item>
+
+            <ion-item class ="input-item">
+                <ion-label class = "">
+                  <ion-icon name ="person"></ion-icon> Phone
+                </ion-label>
+                <ion-input formControlName="tel" type="text" [(ngModel)]="user.tel"></ion-input>
+              </ion-item>
+              <button class="login-button" ion-button icon-start type = "submit" [disabled]="!login_form.valid">
+                  <ion-icon name = "arrow-round-forward"></ion-icon>
+                  <span>Register</span>
+                  </button>
+        </form>
+      </div>
+    
+  </div>
+
+ 
+
+</ion-content>
